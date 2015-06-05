@@ -1,0 +1,15 @@
+Index: groovy2_2.4.3/gradle/jacoco/jacocofix.gradle
+===================================================================
+--- groovy2_2.4.3.orig/gradle/jacoco/jacocofix.gradle	2015-06-04 14:25:06.102375928 +0530
++++ groovy2_2.4.3/gradle/jacoco/jacocofix.gradle	2015-06-04 14:25:50.866374056 +0530
+@@ -16,8 +16,8 @@
+ 
+ // workaround for configuration of Jacoco task being executed before all information is available
+ gradle.taskGraph.whenReady {
+-    tasks.withType(JacocoReport) {
++   /* tasks.withType(JacocoReport) {
+         sourceDirectories = files(sourceSets.main.allGroovy.srcDirs + sourceSets.main.allJava.srcDirs)
+         classDirectories = files(sourceSets.main.output)
+-    }
++    }*/
+ }
