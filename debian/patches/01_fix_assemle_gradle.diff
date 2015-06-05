@@ -1,0 +1,43 @@
+Index: groovy2_2.4.3/gradle/assemble.gradle
+===================================================================
+--- groovy2_2.4.3.orig/gradle/assemble.gradle	2015-06-04 00:30:12.112618630 +0530
++++ groovy2_2.4.3/gradle/assemble.gradle	2015-06-04 00:31:53.440622831 +0530
+@@ -232,7 +232,7 @@
+                 target.delete()
+             }
+         }
+-        jarjar.finalizedBy(grooidjar)
++       // jarjar.finalizedBy(grooidjar)
+     }
+ }
+ 
+@@ -294,10 +294,10 @@
+     inputs.files(allprojects.jarjar.archivePath)
+     outputs.files(allprojects.jar.archivePath)
+ }
+-
++/*
+ allprojects {
+     rootProject.replaceJarWithJarJar.mustRunAfter(test)
+-}
++}*/
+ 
+ task jarAll(type: Jar, dependsOn: replaceJarWithJarJar) {
+ 
+@@ -380,14 +380,14 @@
+         }
+     }
+ }
+-
++/*
+ allprojects {
+     tasks.withType(Test) { task ->
+         jarAll.mustRunAfter(task)
+         jarAllWithIndy.mustRunAfter(task)
+     }
+ }
+-
++*/
+ task sourceAllJar(type: Jar, dependsOn: { modules()*.sourceJar + rootProject.sourceJar }) {
+     with sourceJar.rootSpec
+     modules()*.sourceJar.each {
