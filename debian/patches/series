@@ -3,4 +3,12 @@
 02_fix_start_script.diff
 03_add_maven_poms.diff
 
+
+
+
 fix_for_gradle-1.12
+change_bsf_dependencies_version.diff
+change_servlet_dependency_version.diff
+change_junit_version.diff
+change_testng_dependency_version
+fix_commons-logging_version
