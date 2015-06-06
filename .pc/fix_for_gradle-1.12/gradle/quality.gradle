@@ -46,7 +46,8 @@ allprojects {
         codenarcClasspath = rootProject.sourceSets.main.output +
                 project(':groovy-templates').sourceSets.main.output +
                 project(':groovy-xml').sourceSets.main.output +
-                configurations.compile
+                configurations.compile +
+                files(configurations.codenarc.findAll { !(it.name =~ /groovy|junit/)})
     }
 
     tasks.withType(Checkstyle) {

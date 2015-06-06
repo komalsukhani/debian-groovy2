@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
 Uploaders: Miguel Landaeta <nomadium@debian.org>
 Build-Depends: debhelper (>= 9)
-Build-Depends-Indep: default-jdk, gradle (>= 1.4~), ant, ant-optional,
+Build-Depends-Indep: default-jdk, ant, ant-optional,
  maven-repo-helper, libasm4-java, libbsf-java, libcommons-cli-java,
  libcommons-logging-java, junit4, libservlet2.5-java, libxstream-java,
  libjline2-java, antlr, ivy, libqdox-java, libjansi-java, unzip,

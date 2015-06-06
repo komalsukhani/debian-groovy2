@@ -1,26 +1,26 @@
-Index: groovy2_2.4.3/gradle/docs.gradle
+Index: debian-groovy2/gradle/docs.gradle
 ===================================================================
---- groovy2_2.4.3.orig/gradle/docs.gradle	2015-03-23 16:04:20.000000000 +0530
-+++ groovy2_2.4.3/gradle/docs.gradle	2015-06-03 16:50:28.643968116 +0530
-@@ -6,7 +6,7 @@
+--- debian-groovy2.orig/gradle/docs.gradle	2015-06-06 12:53:27.858164065 +0530
++++ debian-groovy2/gradle/docs.gradle	2015-06-06 13:01:55.155699212 +0530
+@@ -6,17 +6,6 @@
      ext.title = "Groovy ${groovyVersion}"
  }
  
 -if (JavaVersion.current().java7Compatible) {
-+/*if (JavaVersion.current().java7Compatible) {
-     task assembleAsciidoc(type: Copy, dependsOn: 'asciidocAll') {
-         subprojects {
-             from project.asciidoctor
-@@ -15,7 +15,7 @@
-     }
- 
-     task asciidocAll(dependsOn: 'asciidoctor')
+-    task assembleAsciidoc(type: Copy, dependsOn: 'asciidocAll') {
+-        subprojects {
+-            from project.asciidoctor
+-        }
+-        into "$buildDir/asciidoc"
+-    }
+-
+-    task asciidocAll(dependsOn: 'asciidoctor')
 -}
-+}*/
- 
+-
  def javadocSpec = {
      maxMemory = javaDoc_mx
-@@ -189,4 +189,4 @@
+     project.configure(options) {
+@@ -189,4 +178,4 @@
              options.addStringOption('Xdoclint:none', '-quiet')
          }
      }

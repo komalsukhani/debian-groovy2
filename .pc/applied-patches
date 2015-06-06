@@ -2,5 +2,4 @@
 02_fix_gradle_build.diff
 02_fix_start_script.diff
 03_add_maven_poms.diff
-
 fix_for_gradle-1.12

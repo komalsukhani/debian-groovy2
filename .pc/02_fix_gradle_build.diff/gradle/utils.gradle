@@ -24,8 +24,7 @@ import static org.objectweb.asm.Opcodes.*
 
 buildscript {
     repositories {
-       // mavenCentral()
-       mavenRepo url: "file:///usr/share/maven-repo"
+        mavenCentral()
     }
     dependencies {
         classpath "org.ow2.asm:asm:$asmVersion"

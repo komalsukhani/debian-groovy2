@@ -1,5 +1,5 @@
-//import groovy.text.markup.MarkupTemplateEngine
-//import groovy.text.markup.TemplateConfiguration
+import groovy.text.markup.MarkupTemplateEngine
+import groovy.text.markup.TemplateConfiguration
 
 /*
  * Copyright 2003-2014 the original author or authors.
@@ -46,7 +46,8 @@ allprojects {
         codenarcClasspath = rootProject.sourceSets.main.output +
                 project(':groovy-templates').sourceSets.main.output +
                 project(':groovy-xml').sourceSets.main.output +
-                configurations.compile
+                configurations.compile +
+                files(configurations.codenarc.findAll { !(it.name =~ /groovy|junit/)})
     }
 
     tasks.withType(Checkstyle) {
@@ -71,12 +72,12 @@ allprojects {
 
             doLast {
                 if (reportFile.exists()) {
-                   // def templateConfiguration = new TemplateConfiguration()
+                    def templateConfiguration = new TemplateConfiguration()
                     templateConfiguration.with {
                         autoIndent = true
                         autoNewLine = true
                     }
-                    //def engine = new MarkupTemplateEngine(this.class.classLoader, configDir, templateConfiguration)
+                    def engine = new MarkupTemplateEngine(this.class.classLoader, configDir, templateConfiguration)
                     def xml = new XmlSlurper().parse(reportFile.newReader('utf-8'))
                     def files = []
                     xml.file.each { f ->
@@ -104,7 +105,7 @@ allprojects {
                 }
             }
         }
-       // finalizedBy "${name}Report"
+        finalizedBy "${name}Report"
     }
 
 }

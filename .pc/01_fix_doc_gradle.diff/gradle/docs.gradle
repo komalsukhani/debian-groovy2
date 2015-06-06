@@ -6,6 +6,17 @@ task doc(dependsOn: ['javadocAll', 'groovydocAll', 'docGDK']) {
     ext.title = "Groovy ${groovyVersion}"
 }
 
+if (JavaVersion.current().java7Compatible) {
+    task assembleAsciidoc(type: Copy, dependsOn: 'asciidocAll') {
+        subprojects {
+            from project.asciidoctor
+        }
+        into "$buildDir/asciidoc"
+    }
+
+    task asciidocAll(dependsOn: 'asciidoctor')
+}
+
 def javadocSpec = {
     maxMemory = javaDoc_mx
     project.configure(options) {
