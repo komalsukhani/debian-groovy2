@@ -118,8 +118,12 @@ Index: debian-groovy2/build.gradle
      testCompile "jmock:jmock:$jmockVersion"
      testCompile "jmock:jmock-cglib:$jmockVersion"
      testCompile "xmlunit:xmlunit:$xmlunitVersion"
-@@ -165,7 +157,7 @@ dependencies {
-     tools("checkstyle:checkstyle:$checkstyleVersion") {
+@@ -162,10 +154,10 @@ dependencies {
+     testCompile "com.thoughtworks.qdox:qdox:$qdoxVersion"
+ 
+     tools "com.googlecode.jarjar:jarjar:$jarjarVersion"
+-    tools("checkstyle:checkstyle:$checkstyleVersion") {
++    tools("com.puppycrawl.tools:checkstyle:$checkstyleVersion") {
          exclude(module: 'junit')
      }
 -    tools "redhill:simian:$simianVersion"
