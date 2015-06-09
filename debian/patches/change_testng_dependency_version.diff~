@@ -1,5 +1,7 @@
---- a/subprojects/groovy-testng/build.gradle
-+++ b/subprojects/groovy-testng/build.gradle
+Index: debian-groovy2/subprojects/groovy-testng/build.gradle
+===================================================================
+--- debian-groovy2.orig/subprojects/groovy-testng/build.gradle
++++ debian-groovy2/subprojects/groovy-testng/build.gradle
 @@ -1,10 +1,10 @@
  dependencies {
      compile rootProject

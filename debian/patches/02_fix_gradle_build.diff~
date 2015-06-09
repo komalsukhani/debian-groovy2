@@ -1,7 +1,7 @@
 Index: debian-groovy2/build.gradle
 ===================================================================
---- debian-groovy2.orig/build.gradle
-+++ debian-groovy2/build.gradle
+--- debian-groovy2.orig/build.gradle	2015-06-06 12:53:28.182326073 +0530
++++ debian-groovy2/build.gradle	2015-06-06 12:57:42.933644675 +0530
 @@ -1,29 +1,25 @@
  buildscript {
      repositories {
@@ -40,7 +40,7 @@ Index: debian-groovy2/build.gradle
  indyBanner()
  
  // TODO use antlr plugin
-@@ -39,14 +35,11 @@ allprojects {
+@@ -39,14 +35,11 @@
      group = 'org.codehaus.groovy'
      version = groovyVersion
      repositories {
@@ -56,7 +56,7 @@ Index: debian-groovy2/build.gradle
  }
  
  // todo: use the conventional "resources" directory for classpath resources
-@@ -85,8 +78,7 @@ subprojects {
+@@ -85,8 +78,7 @@
  
  repositories {
      // todo Some repos are needed only for some configs. Declare them just for the configuration once Gradle allows this.
@@ -66,13 +66,14 @@ Index: debian-groovy2/build.gradle
  }
  
  // todo do we need compile and runtime scope for examples?
-@@ -100,19 +92,19 @@ configurations {
+@@ -100,19 +92,19 @@
  }
  
  ext {
 -    antVersion = '1.9.4'
+-    asmVersion = '5.0.3'
 +    antVersion = 'debian'
-     asmVersion = '5.0.3'
++    asmVersion = '4.x'
      antlrVersion = '2.7.7'
 -    bndVersion = '0.0.401'
 -    checkstyleVersion = '4.4'
@@ -92,7 +93,7 @@ Index: debian-groovy2/build.gradle
      jlineVersion = '2.12'
      jmockVersion = '1.2.0'
      logbackVersion = '1.1.2'
-@@ -120,11 +112,11 @@ ext {
+@@ -120,11 +112,11 @@
      log4j2Version = '2.1'
      luceneVersion = '4.7.2'
      openejbVersion = '1.0'
@@ -106,7 +107,7 @@ Index: debian-groovy2/build.gradle
  }
  
  dependencies {
-@@ -149,9 +141,9 @@ dependencies {
+@@ -149,9 +141,9 @@
      }
      compile files("${buildDir}/generated-classes")
  
@@ -118,7 +119,7 @@ Index: debian-groovy2/build.gradle
      testCompile "jmock:jmock:$jmockVersion"
      testCompile "jmock:jmock-cglib:$jmockVersion"
      testCompile "xmlunit:xmlunit:$xmlunitVersion"
-@@ -165,7 +157,7 @@ dependencies {
+@@ -165,7 +157,7 @@
      tools("checkstyle:checkstyle:$checkstyleVersion") {
          exclude(module: 'junit')
      }
@@ -129,9 +130,9 @@ Index: debian-groovy2/build.gradle
          exclude(module: 'asm')
 Index: debian-groovy2/gradle/utils.gradle
 ===================================================================
---- debian-groovy2.orig/gradle/utils.gradle
-+++ debian-groovy2/gradle/utils.gradle
-@@ -24,7 +24,8 @@ import static org.objectweb.asm.Opcodes.
+--- debian-groovy2.orig/gradle/utils.gradle	2015-06-06 12:53:28.182326073 +0530
++++ debian-groovy2/gradle/utils.gradle	2015-06-06 12:53:28.150310072 +0530
+@@ -24,7 +24,8 @@
  
  buildscript {
      repositories {
@@ -143,8 +144,8 @@ Index: debian-groovy2/gradle/utils.gradle
          classpath "org.ow2.asm:asm:$asmVersion"
 Index: debian-groovy2/gradle/codehaus.gradle
 ===================================================================
---- debian-groovy2.orig/gradle/codehaus.gradle
-+++ debian-groovy2/gradle/codehaus.gradle
+--- debian-groovy2.orig/gradle/codehaus.gradle	2015-06-06 12:53:28.182326073 +0530
++++ debian-groovy2/gradle/codehaus.gradle	2015-06-06 12:53:28.166318073 +0530
 @@ -1,26 +1,27 @@
 -import com.github.sardine.*
 +/*import com.github.sardine.*
@@ -180,7 +181,7 @@ Index: debian-groovy2/gradle/codehaus.gradle
              def basePath = base.canonicalPath
              base.eachFileRecurse {
                  def name = it.canonicalPath.substring(basePath.length()+1)
-@@ -41,4 +42,5 @@ task htmlPush {
+@@ -41,4 +42,5 @@
              }
          }
      }
@@ -188,8 +189,8 @@ Index: debian-groovy2/gradle/codehaus.gradle
  }
 Index: debian-groovy2/gradle/quality.gradle
 ===================================================================
---- debian-groovy2.orig/gradle/quality.gradle
-+++ debian-groovy2/gradle/quality.gradle
+--- debian-groovy2.orig/gradle/quality.gradle	2015-06-06 12:53:28.182326073 +0530
++++ debian-groovy2/gradle/quality.gradle	2015-06-06 12:53:28.178324073 +0530
 @@ -1,5 +1,5 @@
 -import groovy.text.markup.MarkupTemplateEngine
 -import groovy.text.markup.TemplateConfiguration
@@ -198,7 +199,7 @@ Index: debian-groovy2/gradle/quality.gradle
  
  /*
   * Copyright 2003-2014 the original author or authors.
-@@ -72,12 +72,12 @@ allprojects {
+@@ -72,12 +72,12 @@
  
              doLast {
                  if (reportFile.exists()) {
@@ -213,7 +214,7 @@ Index: debian-groovy2/gradle/quality.gradle
                      def xml = new XmlSlurper().parse(reportFile.newReader('utf-8'))
                      def files = []
                      xml.file.each { f ->
-@@ -105,7 +105,7 @@ allprojects {
+@@ -105,7 +105,7 @@
                  }
              }
          }
