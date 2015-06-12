@@ -5,7 +5,7 @@ include /usr/share/dpkg/default.mk
 export GRADLE_USER_HOME=$(CURDIR)/.gradlehome
 export LC_ALL=en_US.UTF-8
 DEB_GRADLE_OPTS := --project-prop finalRelease=true --stacktrace --offline
-UVERSION := $(shell echo $(DEB_VERSION_UPSTREAM) | sed 's/+dfsg//')
+UVERSION := $( shell dpkg-parsechangelog | shell echo $(DEB_VERSION_UPSTREAM) | sed 's/+dfsg//')
 MAVEN_REPO_URL := http://repo1.maven.org/maven2/
 MODULES := docgenerator servlet ant groovydoc xml swing sql jmx test console groovysh json testng jsr223 templates bsf
 
@@ -16,8 +16,12 @@ override_dh_auto_clean:
 	dh_auto_clean
 	-gradle $(DEB_GRADLE_OPTS) clean
 	# to-do: patch .gradle file to delete these files
-	-rm -rf .gradle .gradlehome buildSrc/.gradle buildSrc/target
+	rm -rf .gradle .gradlehome buildSrc/.gradle buildSrc/target
 	mh_clean
+
+override_dh_clean:
+	dh_clean
+	rm -rf .gradlehome
 
 override_dh_auto_build:
 	dh_auto_build
@@ -30,20 +34,20 @@ override_dh_auto_install:
 	dh_auto_install
 	# embeddable groovy-all jar with indy feature is not installed through maven
 	dh_install \
-		target/distributions/bin/groovy-$(UVERSION)/embeddable/groovy-all-$(UVERSION)-indy.jar \
+		target/distributions/bin/groovy-$(UVERSION/embeddable/groovy-all-2.4.3-indy.jar \
 		usr/share/groovy2/embeddable
 	# groovy core
 	mh_installpom -o -v -pgroovy2 maven/groovy.pom
-	mh_installjar -pgroovy2 -l -s -j2.x maven/groovy.pom target/libs/groovy-$(UVERSION).jar
+	mh_installjar -pgroovy2 -l -s -j2.x maven/groovy.pom target/libs/groovy-2.4.3.jar
 	# groovy-all
 	mh_installpom -o -v -pgroovy2 maven/groovy-all.pom
 	mh_installjar -pgroovy2 -l -s -j2.x maven/groovy-all.pom \
-		target/distributions/bin/groovy-$(UVERSION)/embeddable/groovy-all-$(UVERSION).jar
+		target/distributions/bin/groovy-2.4.3/embeddable/groovy-all-2.4.3.jar
 	# all the remaining groovy modules
 	for MOD in $(MODULES); do \
 	   mh_installpom -o -v -pgroovy2 maven/groovy-$$MOD.pom; \
 	   mh_installjar -pgroovy2 -j2.x maven/groovy-$$MOD.pom \
-	      subprojects/groovy-$$MOD/target/libs/groovy-$$MOD-$(UVERSION).jar; \
+	      subprojects/groovy-$$MOD/target/libs/groovy-$$MOD-2.4.3.jar; \
 	done
 
 override_dh_installman:
