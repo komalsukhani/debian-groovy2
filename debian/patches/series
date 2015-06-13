@@ -11,4 +11,3 @@ change_bsf_dependencies_version.diff
 change_servlet_dependency_version.diff
 change_junit_version.diff
 change_testng_dependency_version.diff
-fix_bsf_dependency_version

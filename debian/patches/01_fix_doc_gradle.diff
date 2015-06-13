@@ -2,7 +2,12 @@ Index: debian-groovy2/gradle/docs.gradle
 ===================================================================
 --- debian-groovy2.orig/gradle/docs.gradle
 +++ debian-groovy2/gradle/docs.gradle
-@@ -6,17 +6,6 @@ task doc(dependsOn: ['javadocAll', 'groo
+@@ -1,22 +1,8 @@
+ task doc(dependsOn: ['javadocAll', 'groovydocAll', 'docGDK']) {
+-    if (JavaVersion.current().java7Compatible) {
+-        dependsOn 'asciidocAll', 'assembleAsciidoc'
+-    }
+     ext.footer = 'Copyright &amp;copy; 2003-2014 The Codehaus. All rights reserved.'
      ext.title = "Groovy ${groovyVersion}"
  }
  
@@ -20,7 +25,7 @@ Index: debian-groovy2/gradle/docs.gradle
  def javadocSpec = {
      maxMemory = javaDoc_mx
      project.configure(options) {
-@@ -102,66 +91,10 @@ task docProjectVersionInfo(type: Copy) {
+@@ -102,66 +88,10 @@ task docProjectVersionInfo(type: Copy) {
  
  task docGDK {
  //    ext.extraDocGDKclasses = []
@@ -87,7 +92,7 @@ Index: debian-groovy2/gradle/docs.gradle
  }
  
  // this will apply the javadoc fix tool to all generated javadocs
-@@ -189,4 +122,4 @@ if (JavaVersion.current().isJava8Compati
+@@ -189,4 +119,4 @@ if (JavaVersion.current().isJava8Compati
              options.addStringOption('Xdoclint:none', '-quiet')
          }
      }

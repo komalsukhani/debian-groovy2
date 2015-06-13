@@ -1,26 +1,13 @@
 Index: debian-groovy2/subprojects/groovy-bsf/build.gradle
 ===================================================================
---- debian-groovy2.orig/subprojects/groovy-bsf/build.gradle	2015-06-05 12:39:21.391281304 +0530
-+++ debian-groovy2/subprojects/groovy-bsf/build.gradle	2015-06-06 14:15:04.292051467 +0530
-@@ -2,7 +2,7 @@
+--- debian-groovy2.orig/subprojects/groovy-bsf/build.gradle
++++ debian-groovy2/subprojects/groovy-bsf/build.gradle
+@@ -2,7 +2,7 @@ dependencies {
      compile('bsf:bsf:2.4.0') {
          exclude(group: 'commons-logging', module: 'commons-logging')
      }
 -    compile 'commons-logging:commons-logging:1.2'
-+    compile 'commons-logging:commons-logging:1.1.3'
++    compile 'commons-logging:commons-logging:debian'
      compile rootProject
      testCompile project(':groovy-test')
  }
-Index: debian-groovy2/build.gradle
-===================================================================
---- debian-groovy2.orig/build.gradle	2015-06-06 13:31:36.343983841 +0530
-+++ debian-groovy2/build.gradle	2015-06-06 14:22:49.648063534 +0530
-@@ -105,7 +105,7 @@
-     ivyVersion = 'debian'
-     jansiVersion = 'debian'
-     jarjarVersion = '1.4-SNAPSHOT'
--    jlineVersion = '2.12'
-+    jlineVersion = '2.x'
-     jmockVersion = '1.2.0'
-     logbackVersion = '1.1.2'
-     log4jVersion = '1.2.17'
